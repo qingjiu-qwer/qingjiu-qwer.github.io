@@ -23,14 +23,10 @@ def get_int_value_default(_config: dict, _key, default):
 
 # 获取当前时间对应的最大和最小步数
 def get_min_max_by_time(hour=None, minute=None):
-    if hour is None:
-        hour = time_bj.hour
-    if minute is None:
-        minute = time_bj.minute
-    time_rate = min((hour * 60 + minute) / (22 * 60), 1)
+      """获取步数范围 - 修改版：去掉时间影响"""
     min_step = get_int_value_default(config, 'MIN_STEP', 28000)
     max_step = get_int_value_default(config, 'MAX_STEP', 35000)
-    return int(time_rate * min_step), int(time_rate * max_step)
+    return min_step, max_step
 
 
 # 虚拟ip地址
